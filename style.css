@@ -1,6 +1,15 @@
 /* Общие стили */
 body {
+    background-image: url('https://i.pinimg.com/originals/77/64/0c/77640cef0e985fe6101588091628582e.gif');
     font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* Стили для баннера */
@@ -12,20 +21,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
     text-align: center;
 }
 
-.banner-content {
-    padding: 20px;
-}
-
-.banner-content h1 {
+#banner h1 {
     font-size: 36px;
+    color: #fff;
 }
 
-.banner-content p {
+#banner p {
     font-size: 20px;
+    color: #fff;
 }
 
 /* Стили для секций */
@@ -47,6 +53,9 @@ section p {
 #donate button {
     padding: 10px 20px;
     font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     border-radius: 5px;
 }
 
@@ -60,11 +69,4 @@ footer {
 footer p {
     font-size: 14px;
     color: #6c757d;
-}
-
-/* Медиа-запросы для адаптивности */
-@media (max-width: 768px) {
-    .navbar-nav.ml-auto li {
-        margin-bottom: 10px;
-    }
 }
