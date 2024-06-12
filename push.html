@@ -81,6 +81,7 @@
     <div id="user-id"></div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJBazHLgAR1aNwEn1Pv0JE69AiqB5pVH3yBC/9dTiDi" crossorigin="anonymous"></script>
   <script>
     const subscribeButton = document.getElementById('subscribe-button');
@@ -94,13 +95,17 @@
         applicationServerKey: 'BPgVZ8INMzQp48_jn6-98EOvgDpEYnKf1Bye--9l5G_es4pMH1XXKpp0e2hZp06LJOXT8bRKiHN5IZVlRpiPOoo'
       });
 
-      await fetch('http://79.137.204.229:2228/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(subscription)
-      });
+      axios.post('http://79.137.204.229:2228/subscribe', subscription, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    console.log('Успешно отправлено:', response);
+  })
+  .catch(error => {
+    console.error('Ошибка отправки:', error);
+  });
 
       userIdElement.textContent = `Your user ID: ${subscription.endpoint}`;
     });
