@@ -97,7 +97,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJBazHLgAR1aNwEn1Pv0JE69AiqB5pVH3yBC/9dTiDi" crossorigin="anonymous"></script>
   <script>
-    const subscribeButton = document.getElementById('subscribe-button');
+const subscribeButton = document.getElementById('subscribe-button');
 const userIdElement = document.getElementById('user-id');
 
 subscribeButton.addEventListener('click', async () => {
@@ -121,16 +121,15 @@ subscribeButton.addEventListener('click', async () => {
     },
     body: JSON.stringify(subscription)
   });
+
+  userIdElement.textContent = `Your user ID: ${subscription.endpoint}`;
 });
 
-      userIdElement.textContent = `Your user ID: ${subscription.endpoint}`;
-    });
-
-    async function getIpAddress() {
-      const response = await fetch('https://api.ipify.org?format=json');
-      const data = await response.json();
-      return data.ip;
-    }
+async function getIpAddress() {
+  const response = await fetch('https://api.ipify.org?format=json');
+  const data = await response.json();
+  return data.ip;
+}
   </script>
 </body>
 </html>
