@@ -95,17 +95,13 @@
         applicationServerKey: 'BPgVZ8INMzQp48_jn6-98EOvgDpEYnKf1Bye--9l5G_es4pMH1XXKpp0e2hZp06LJOXT8bRKiHN5IZVlRpiPOoo'
       });
 
-      axios.post('http://79.137.204.229:2228/subscribe', subscription, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(response => {
-    console.log('Успешно отправлено:', response);
-  })
-  .catch(error => {
-    console.error('Ошибка отправки:', error);
-  });
+await fetch('http://79.137.204.229/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(subscription)
+      });
 
       userIdElement.textContent = `Your user ID: ${subscription.endpoint}`;
     });
