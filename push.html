@@ -98,31 +98,30 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJBazHLgAR1aNwEn1Pv0JE69AiqB5pVH3yBC/9dTiDi" crossorigin="anonymous"></script>
   <script>
     const subscribeButton = document.getElementById('subscribe-button');
-    const userIdElement = document.getElementById('user-id');
+const userIdElement = document.getElementById('user-id');
 
-    subscribeButton.addEventListener('click', async () => {
-      const registration = await navigator.serviceWorker.register('/sw.js');
+subscribeButton.addEventListener('click', async () => {
+  const registration = await navigator.serviceWorker.register('/sw.js');
 
-      const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: 'BPgVZ8INMzQp48_jn6-98EOvgDpEYnKf1Bye--9l5G_es4pMH1XXKpp0e2hZp06LJOXT8bRKiHN5IZVlRpiPOoo'
-      });
+  const subscription = await registration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: 'BPgVZ8INMzQp48_jn6-98EOvgDpEYnKf1Bye--9l5G_es4pMH1XXKpp0e2hZp06LJOXT8bRKiHN5IZVlRpiPOoo'
+  });
 
-       fetch('https://e04dbf92-b7f1-4854-bcaa-7d60dabb361a-00-2wsbmv29ixzm5.spock.replit.dev/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(subscription)
-      });
+  // Get the device name
+  const deviceName = navigator.userAgent;
 
-       fetch('https://e04dbf92-b7f1-4854-bcaa-7d60dabb361a-00-2wsbmv29ixzm5.spock.replit.dev/userid', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
+  // Add the device name to the subscription object
+  subscription.deviceName = deviceName;
+
+  fetch('https://e04dbf92-b7f1-4854-bcaa-7d60dabb361a-00-2wsbmv29ixzm5.spock.replit.dev/subscribe', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(subscription)
+  });
+});
 
       userIdElement.textContent = `Your user ID: ${subscription.endpoint}`;
     });
